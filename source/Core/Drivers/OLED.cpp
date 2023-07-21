@@ -33,19 +33,19 @@ uint32_t           OLED::displayChecksum;
  */
 I2C_CLASS::I2C_REG OLED_Setup_Array[] = {
     /**/
-    {0x80, OLED_OFF, 0},         /* Display off */
-    {0x80, OLED_DIVIDER, 0},     /* Set display clock divide ratio / osc freq */
-    {0x80, 0x52, 0},             /* Divide ratios */
-    {0x80, 0xA8, 0},             /* Set Multiplex Ratio */
-    {0x80, OLED_HEIGHT - 1, 0},  /* Multiplex ratio adjusts how far down the matrix it scans */
-    {0x80, 0xC0, 0},             /* Set COM Scan direction */
-    {0x80, 0xD3, 0},             /* Set vertical Display offset */
-    {0x80, 0x00, 0},             /* 0 Offset */
-    {0x80, 0x40, 0},             /* Set Display start line to 0 */
+    {0x80, OLED_OFF, 0},        /* Display off */
+    {0x80, OLED_DIVIDER, 0},    /* Set display clock divide ratio / osc freq */
+    {0x80, 0x52, 0},            /* Divide ratios */
+    {0x80, 0xA8, 0},            /* Set Multiplex Ratio */
+    {0x80, OLED_HEIGHT - 1, 0}, /* Multiplex ratio adjusts how far down the matrix it scans */
+    {0x80, 0xC0, 0},            /* Set COM Scan direction */
+    {0x80, 0xD3, 0},            /* Set vertical Display offset */
+    {0x80, 0x00, 0},            /* 0 Offset */
+    {0x80, 0x40, 0},            /* Set Display start line to 0 */
 #ifdef OLED_SEGMENT_MAP_REVERSED
-    {0x80, 0xA1, 0},             /* Set Segment remap to normal */
+    {0x80, 0xA1, 0}, /* Set Segment remap to normal */
 #else
-    {0x80, 0xA0, 0},             /* Set Segment remap to normal */
+    {0x80, 0xA0, 0}, /* Set Segment remap to normal */
 #endif
     {0x80, 0x8D, 0},             /* Charge Pump */
     {0x80, 0x14, 0},             /* Charge Pump settings */
@@ -318,9 +318,12 @@ void OLED::transitionSecondaryFramebuffer(bool forwardNavigation) {
     refresh(); // Now refresh to write out the contents to the new page
     vTaskDelayUntil(&startDraw, TICKS_100MS / 7);
     if (getButtonState() != BUTTON_NONE) {
+      memcpy(screenBuffer + FRAMEBUFFER_START, secondFrameBuffer + FRAMEBUFFER_START, sizeof(screenBuffer) - FRAMEBUFFER_START);
+      refresh(); // Now refresh to write out the contents to the new page
       return;
     }
   }
+  refresh(); //
 }
 
 void OLED::useSecondaryFramebuffer(bool useSecondary) {
