@@ -63,10 +63,10 @@
  * OLED Brightness
  *
  */
-#define MIN_BRIGHTNESS             1   // Min OLED brightness selectable
-#define MAX_BRIGHTNESS             101 // Max OLED brightness selectable
-#define BRIGHTNESS_STEP            25  // OLED brightness increment
-#define DEFAULT_BRIGHTNESS         26  // default OLED brightness
+#define MIN_BRIGHTNESS     1   // Min OLED brightness selectable
+#define MAX_BRIGHTNESS     101 // Max OLED brightness selectable
+#define BRIGHTNESS_STEP    25  // OLED brightness increment
+#define DEFAULT_BRIGHTNESS 26  // default OLED brightness
 
 /**
  * Temp change settings
@@ -87,7 +87,7 @@
 #define POWER_PULSE_DEFAULT 0
 #else
 #define POWER_PULSE_DEFAULT 5
-#endif /* Pinecil */
+#endif                                 /* Pinecil */
 #define POWER_PULSE_WAIT_DEFAULT     4 // Default rate of the power pulse: 4*2500 = 10000 ms = 10 s
 #define POWER_PULSE_DURATION_DEFAULT 1 // Default duration of the power pulse: 1*250 = 250 ms
 
@@ -152,6 +152,7 @@
 #define POW_QC_20V                 1                         // Supported features
 #define POW_EPR                    1
 #define ENABLE_QC2                 1
+#define MAG_SLEEP_SUPPORT          1
 #define DEVICE_HAS_VALIDATION_SUPPORT
 #define TEMP_NTC
 #define ACCEL_BMA
@@ -167,8 +168,8 @@
 #define CANT_DIRECT_READ_SETTINGS
 #endif /* Pinecilv2 */
 
-#define FLASH_LOGOADDR (0x23000000 + (1022 * 1024))
-#define FLASH_PAGE_SIZE (1024)
+#define FLASH_LOGOADDR      (0x23000000 + (1022 * 1024))
+#define FLASH_PAGE_SIZE     (1024)
 #define SETTINGS_START_PAGE (1023 * FLASH_PAGE_SIZE) // Hal auto offsets base addr
 
 #endif /* CONFIGURATION_H_ */
